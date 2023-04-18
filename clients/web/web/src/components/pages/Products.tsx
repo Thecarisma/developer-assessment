@@ -1,3 +1,5 @@
+import { Item } from "./Item";
+import { Product } from "./Product";
 
 
 type ProductsProps = {};
@@ -29,40 +31,33 @@ export const Products = (props: ProductsProps) => {
             </div>
             <div className="title">Products</div>
             <div className="products-listing">
-                <div className="product">
-                    <img alt="paracetamol" src="https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"/>
-                    <div className="info">
-                        <div className="price">NGN 300</div>
-                        <div className="name">Paracetamol</div>
-                        <div className="desc">Paracetamol (acetaminophen) is a pain reliever and a fever reducer</div>
-                        <button className="textonly" onClick={() => {}}>Add To Cart</button>
-                    </div>
-                </div>
-                <div className="product">
-                    <img alt="paracetamol" src="https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"/>
-                    <div className="info">
-                        <div className="price">NGN 300</div>
-                        <div className="name">Paracetamol</div>
-                        <div className="desc">Paracetamol (acetaminophen) is a pain reliever and a fever reducer</div>
-                        <button className="textonly" onClick={() => {}}>Add To Cart</button>
-                    </div>
-                </div>
-                <div className="product">
-                    <img alt="paracetamol" src="https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"/>
-                    <div className="info">
-                        <div className="price">NGN 300</div>
-                        <div className="name">Paracetamol</div>
-                        <div className="desc">Paracetamol (acetaminophen) is a pain reliever and a fever reducer</div>
-                        <button className="textonly" onClick={() => {}}>Add To Cart</button>
-                    </div>
-                </div>
-                <div className="product">
-                    <img alt="paracetamol" src="https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"/>
-                    <div className="info">
-                        <div className="price">NGN 300</div>
-                        <div className="name">Paracetamol</div>
-                        <div className="desc">Paracetamol (acetaminophen) is a pain reliever and a fever reducer</div>
-                        <button className="textonly" onClick={() => {}}>Add To Cart</button>
+                {<Product
+                    sku="sku"
+                    price="300"
+                    name="Paracetamol"
+                    desc="Paracetamol (acetaminophen) is a pain reliever and a fever reducer"
+                    image="https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"
+                    onClick={() => { }} />}
+            </div>
+        </div>
+
+        <div className="dialog">
+            <div className="content">
+                <span className="title">Cart</span>
+                <div className="items">
+                    {<Item
+                        sku="sku"
+                        price={300}
+                        name="Paracetamol"
+                        desc="Paracetamol (acetaminophen) is a pain reliever and a fever reducer"
+                        image="https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"
+                        onRemove={() => { }} />}
+                    <div className="sub-total">
+                        <div>
+                            <span>Total: 2</span>
+                            <span className="total">₦600</span>
+                        </div>
+                        <button>Checkout</button>
                     </div>
                 </div>
             </div>

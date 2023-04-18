@@ -59,6 +59,7 @@ button {
   margin: 10px;
   cursor: pointer;
   min-height: 40px;
+  margin-left: 0px
 }
 
 button.textonly {
@@ -265,3 +266,115 @@ a:hover {
 .product>.info>.desc {
   margin-top: 5px;
 }
+
+
+.dialog {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(66, 68, 67, 0.5);
+}
+
+.dialog > .content {
+  padding: 20px;
+  overflow: auto;
+  max-width: 60%;
+  max-height: 80vh;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.dialog > .content>.title {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+}
+
+.items>.item {
+  display: flex;
+  align-items: center;
+}
+
+.items>.item>img {
+  width: 200px;
+  height: 170px;
+}
+
+.items>.item>.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.items>.item>.info>.name {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.items>.item>.info>.desc {
+  margin-top: 10px;
+}
+
+.counter {
+  margin-top: 10px;
+}
+
+.counter > i {
+  padding: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 100px;
+  background-color: rgb(213, 211, 211);
+}
+
+.counter > span {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.items>.item>.sub-total {
+  display: flex;
+  margin-top: 10px;
+  align-self: baseline;
+  flex-direction: column;
+}
+
+.items>.item>.sub-total>.price {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.items>.item>.sub-total>.remove {
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.items>.item>.sub-total>.remove:hover {
+  text-decoration: underline;
+}
+
+.items>.sub-total {
+  align-self: flex-end;
+  width: fit-content;
+}
+
+.items>.sub-total>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.items>.sub-total>div>.total {
+  font-size: 20px;
+  margin-top: 5px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
