@@ -38,6 +38,32 @@ Install the dependencies with the folowing command
 pip install -e requirements.txt
 ```
 
+## Setting up Database
+
+The project uses the in-memory database sqlite for a seamless execution and also to prevent 
+so much setup for database.
+
+To Create the tables and setup the database execute
+
+```bash
+python3 manage.py makemigrations  
+python3 manage.py migrate
+```
+
+## Create Admin User
+
+```bash
+python3 manage.py createsuperuser
+```
+
+Enter your details for the prompts
+
+## Run Service
+
+```bash
+python3 manage.py runserver
+```
+
 ## References
 
 - [DJango](#https://www.djangoproject.com/)
