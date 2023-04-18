@@ -13,7 +13,7 @@ class ProductType(DjangoObjectType):
 
 class ProductQuery(graphene.ObjectType):
 
-    all_product = graphene.List(ProductType)
+    all_products = graphene.List(ProductType)
     # description clashes with graphene.List description so the field desc is expected
     query_products = graphene.List(ProductType,
                                 sku=graphene.String(default_value=None, required=False),
@@ -23,7 +23,7 @@ class ProductQuery(graphene.ObjectType):
                                 desc=graphene.String(default_value=None, required=False)) 
     product_by_id = graphene.Field(ProductType, id=graphene.Int(required=False))
 
-    def resolve_all_product(self, info):
+    def resolve_all_products(self, info):
         return Product.objects.all()
 
     def resolve_query_products(self, info, **kwargs):

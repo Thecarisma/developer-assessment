@@ -1,10 +1,30 @@
-import { Item } from "./Item";
-import { Product } from "./Product";
 
+import React from "react";
+import { Item } from "./Item";
+import { useQuery, gql } from "@apollo/client";
+import { Product, ProductProps } from "./Product";
+
+const PRODUCT_QUERIES = gql`
+{
+    allProducts {
+      sku
+      name
+      image
+      price
+      description
+    }
+}  
+`;
 
 type ProductsProps = {};
 
 export const Products = (props: ProductsProps) => {
+
+    const { data, loading, error } = useQuery(PRODUCT_QUERIES);
+    const [showCart, setShowCart] = React.useState<boolean>(false);
+    const [cartItems, setCartItems] = React.useState<ProductProps[]>([]);
+
+    console.log(">>>>>", PRODUCT_QUERIES, data, loading, error);
     return (<div className="products">
         <div className="sidebar">
             <span className="title">Lifestores Healthcare</span>
@@ -23,7 +43,7 @@ export const Products = (props: ProductsProps) => {
                 </div>
                 <div className="control">
                     <i className="fa-solid fa-user inactive" />
-                    <i className="fa-solid fa-shopping-cart" />
+                    <i className="fa-solid fa-shopping-cart" onClick={() => setShowCart(!showCart)} />
                     <div>
                         <span>Howdy, Partner</span>
                     </div>
@@ -31,27 +51,31 @@ export const Products = (props: ProductsProps) => {
             </div>
             <div className="title">Products</div>
             <div className="products-listing">
-                {<Product
-                    sku="sku"
-                    price="300"
-                    name="Paracetamol"
-                    desc="Paracetamol (acetaminophen) is a pain reliever and a fever reducer"
-                    image="https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"
-                    onClick={() => { }} />}
+                {!loading && !error ? data.allProducts.map((product: any) => (
+                    <Product
+                        sku={product.sku}
+                        price={product.price}
+                        name={product.name}
+                        description={product.description}
+                        image={product.image}
+                        onClick={() => addItemToCart(product)} />
+                )): null}
             </div>
         </div>
 
-        <div className="dialog">
+        {showCart ? <div className="dialog">
             <div className="content">
                 <span className="title">Cart</span>
                 <div className="items">
-                    {<Item
-                        sku="sku"
-                        price={300}
-                        name="Paracetamol"
-                        desc="Paracetamol (acetaminophen) is a pain reliever and a fever reducer"
-                        image="https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"
-                        onRemove={() => { }} />}
+                    {cartItems.map((product: ProductProps) => {
+                        return (<Item
+                            sku={product.sku}
+                            price={product.price}
+                            name={product.name}
+                            desc={product.description}
+                            image={product.image}
+                            onRemove={() => { }} />);
+                    })}
                     <div className="sub-total">
                         <div>
                             <span>Total: 2</span>
@@ -61,6 +85,10 @@ export const Products = (props: ProductsProps) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> : null}
     </div>);
+
+    function addItemToCart(product: ProductProps) {
+        setCartItems([...cartItems, product]);
+    }
 };

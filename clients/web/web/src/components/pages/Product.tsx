@@ -1,12 +1,13 @@
 
 
-type ProductProps = {
+export type ProductProps = {
     sku: string;
     name: string;
-    desc: string;
-    price: string;
+    price: number;
     image: string;
-    onClick: any
+    description: string;
+
+    onClick: any;
 };
 
 export const Product = (props: ProductProps) => {
@@ -15,7 +16,7 @@ export const Product = (props: ProductProps) => {
         <div className="info">
             <div className="price">₦ {props.price}</div>
             <div className="name">{props.name}</div>
-            <div className="desc">{props.desc}</div>
+            <div className="desc">{props.description}</div>
             <button className="textonly" onClick={props.onClick}>Add To Cart</button>
         </div>
     </div>);

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # self defined 
+    'corsheaders',
     'productia.product',
     'graphene_django',  
 ]
@@ -131,4 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GRAPHENE = {
     "SCHEMA": "productia.product.schema.schema"
 }
+
+CORS_ORIGIN_ALLOW_ALL = DEBUG
 

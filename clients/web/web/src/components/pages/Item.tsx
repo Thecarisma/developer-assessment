@@ -12,7 +12,7 @@ type ItemProps = {
 
 export const Item = (props: ItemProps) => {
 
-    const [quantity, setQuantity] = React.useState<number>(1)
+    const [quantity, setQuantity] = React.useState<number>(1);
 
     return (<div className="item">
         <img alt={props.name} src={props.image} />
