@@ -6,10 +6,9 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-RUN pip install --no-cache-dir -r requirements.txt
-
 FROM nginx:1.19.0
-WORKDIR /usr/share/nginx/html
-RUN rm -Rf ./*
-COPY --from=builder /app/build .
+RUN rm /etc/nginx/conf.d/default.conf
+RUN mkdir -p /var/www/html
+WORKDIR /var/www/html
+COPY --from=builder /web/build .
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

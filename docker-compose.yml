@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:  
+  service:
+    build:
+      context: ./service
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    restart: unless-stopped
+    container_name: pydjango-service
+
+  nginx:
+    build: 
+      context: ./clients/web
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - service
+    restart: unless-stopped
+    container_name: pydjango-client-web
+
+
