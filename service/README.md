@@ -1,11 +1,36 @@
+# Table of Content
 
+- [Requirements](#requirements)
+- [Executing in Docker](#executing-in-docker)
+- [Executing Locally](#Executing-locally)
+    - [Setup Virtual Env](#setup-virtual-env)
+        - [Mac, Linux and Unix](#mac-linux-and-unix)
+        - [Windows](#windows)
+    - [Dependencies Installation](#dependencies-installation)
+    - [Setting up Database](#setting-up-database)
+    - [Laod the Initial Test Data](#laod-the-initial-test-data)
+    - [Create Admin User](#create-admin-user)
+    - [Run Service](#run-service)
+- [Runnning The GraphQL Query on UI](#runnning-the-graphQL-query-on-uI)
 
 # Requirements
 
 - Python3
-- Docker (Optional)
+- Docker
 
 # Executing in Docker
+
+Use the command to build a docker image
+
+```bash
+docker build -t pydjango-service .
+```
+
+And to start the service in docker execute
+
+```bash
+docker run -it -p 8000:8000 pydjango-service
+```
 
 # Executing Locally
 
