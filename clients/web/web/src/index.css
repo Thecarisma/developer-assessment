@@ -68,6 +68,7 @@ button.textonly {
   font-size: 16px;
   color: #55ca7c;
   margin-top: 10px;
+  font-weight: bold;
   outline: none !important;
   border-color: transparent;
   background-color: transparent;
@@ -303,8 +304,9 @@ a:hover {
 }
 
 .items>.item>img {
-  width: 200px;
-  height: 170px;
+  width: 80px;
+  height: 90px;
+  margin: 20px;
 }
 
 .items>.item>.info {

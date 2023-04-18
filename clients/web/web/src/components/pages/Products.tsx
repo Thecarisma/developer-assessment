@@ -7,6 +7,7 @@ import { Product, ProductProps } from "./Product";
 const PRODUCT_QUERIES = gql`
 {
     allProducts {
+      id
       sku
       name
       image
@@ -21,10 +22,10 @@ type ProductsProps = {};
 export const Products = (props: ProductsProps) => {
 
     const { data, loading, error } = useQuery(PRODUCT_QUERIES);
+    const [totalPrice, setTotalPrice] = React.useState<number>(0);
     const [showCart, setShowCart] = React.useState<boolean>(false);
     const [cartItems, setCartItems] = React.useState<ProductProps[]>([]);
 
-    console.log(">>>>>", PRODUCT_QUERIES, data, loading, error);
     return (<div className="products">
         <div className="sidebar">
             <span className="title">Lifestores Healthcare</span>
@@ -53,6 +54,7 @@ export const Products = (props: ProductsProps) => {
             <div className="products-listing">
                 {!loading && !error ? data.allProducts.map((product: any) => (
                     <Product
+                        id={product.id}
                         sku={product.sku}
                         price={product.price}
                         name={product.name}
@@ -63,25 +65,27 @@ export const Products = (props: ProductsProps) => {
             </div>
         </div>
 
-        {showCart ? <div className="dialog">
+        {showCart ? <div className="dialog" onClick={toggleDialog}>
             <div className="content">
                 <span className="title">Cart</span>
                 <div className="items">
                     {cartItems.map((product: ProductProps) => {
                         return (<Item
+                            id={product.id}
                             sku={product.sku}
                             price={product.price}
                             name={product.name}
                             desc={product.description}
                             image={product.image}
-                            onRemove={() => { }} />);
+                            onCounter={updatePrice}
+                            onRemove={removeProduct} />);
                     })}
                     <div className="sub-total">
                         <div>
-                            <span>Total: 2</span>
-                            <span className="total">₦600</span>
+                            <span>Total:</span>
+                            <span className="total">₦{totalPrice}</span>
                         </div>
-                        <button>Checkout</button>
+                        <button onClick={() => setShowCart(!showCart)}>Checkout</button>
                     </div>
                 </div>
             </div>
@@ -89,6 +93,28 @@ export const Products = (props: ProductsProps) => {
     </div>);
 
     function addItemToCart(product: ProductProps) {
-        setCartItems([...cartItems, product]);
+        const index = cartItems.findIndex(x => x.id === product.id);
+        if (index === -1) {
+            setCartItems([ ...cartItems, product]);
+        }
+        setShowCart(!showCart);
     }
+
+    function removeProduct(id: number) {
+        const index = cartItems.findIndex(x => x.id === id);
+        cartItems.splice(index, 1);
+        setCartItems(cartItems);
+        setTotalPrice(cartItems.reduce((acc: number, p: ProductProps): number => acc+p.price, 0));
+        setShowCart(!showCart);
+    }
+
+    function toggleDialog(e: any) {
+        //if (showCart) setShowCart(false);
+        //e.stopPropagation();
+    }
+
+    function updatePrice(value: number) {
+        setTotalPrice(totalPrice+value);
+    }
+
 };
