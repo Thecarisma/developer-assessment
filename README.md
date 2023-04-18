@@ -10,15 +10,12 @@ docker compose up --build --force-recreate --no-deps
 
 The Graph QL UI client will be running at 
 
-```
-http://127.0.0.1:8000/graphql
-```
+[http://127.0.0.1:8000/graphql](http://127.0.0.1:8000/graphql)
 
 
 The Web client will be running at 
-```
-http://127.0.0.1:8100
-```
+
+[http://127.0.0.1:8100](http://127.0.0.1:8100)
 
 
 # developer-assessment
