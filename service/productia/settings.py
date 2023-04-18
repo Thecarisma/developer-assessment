@@ -129,6 +129,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # self defined 
 
 GRAPHENE = {
-    "SCHEMA": "productia.schema.schema"
+    "SCHEMA": "productia.product.schema.schema"
 }
 

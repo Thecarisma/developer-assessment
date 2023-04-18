@@ -50,18 +50,59 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
+### Laod the Initial Test Data
+
+```bash
+python3 manage.py loaddata products
+```
+
 ## Create Admin User
 
 ```bash
 python3 manage.py createsuperuser
 ```
 
-Enter your details for the prompts
+Enter your details for the prompts.
+Visit [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) to manage the product on the platform
 
 ## Run Service
 
 ```bash
 python3 manage.py runserver
+```
+
+# Runnning The GraphQL Query on UI
+
+Visit the route on the browser [http://127.0.0.1:8000/graphql](http://127.0.0.1:8000/graphql)
+
+Query for all products
+
+```graphql
+{
+  allProduct {
+    sku
+    name
+    image
+    price
+    description
+  }
+}
+
+```
+
+Sample Query to get by Id
+
+```graphql
+{
+  productById(id: 1) {
+    sku
+    name
+    image
+    price
+    description
+  }
+}
+
 ```
 
 ## References
