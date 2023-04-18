@@ -35,7 +35,7 @@ activate
 Install the dependencies with the folowing command
 
 ```
-pip install -e requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Setting up Database
