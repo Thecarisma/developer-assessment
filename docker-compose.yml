@@ -15,7 +15,7 @@ services:
       context: ./clients/web
       dockerfile: Dockerfile
     ports:
-      - 8080:80
+      - 8100:80
     depends_on:
       - service
     restart: unless-stopped

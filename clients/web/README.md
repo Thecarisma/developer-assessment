@@ -9,7 +9,7 @@ docker build -t pydjango-client-web .
 And to start the service in docker execute
 
 ```bash
-docker run -it -p 3000:3000 pydjango-client-web
+docker run -it -p 8100:80 pydjango-client-web
 ```
 
 ## Available Scripts

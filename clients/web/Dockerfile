@@ -6,9 +6,9 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:1.19.0
-RUN rm /etc/nginx/conf.d/default.conf
-RUN mkdir -p /var/www/html
-WORKDIR /var/www/html
-COPY --from=builder /web/build .
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+FROM nginx:1.21.0-alpine as production
+ENV NODE_ENV production
+COPY --from=builder /web/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
