@@ -1,3 +1,26 @@
+
+# Running The test 
+
+To Build and start the service and the web client
+
+```
+docker compose up --build --force-recreate --no-deps
+```
+
+
+The Graph QL UI client will be running at 
+
+```
+http://127.0.0.1:8000/graphql
+```
+
+
+The Web client will be running at 
+```
+http://127.0.0.1:8080
+```
+
+
 # developer-assessment
 A technical assessment exercise for Developer candidates
 

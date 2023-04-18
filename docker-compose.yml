@@ -6,7 +6,7 @@ services:
       context: ./service
       dockerfile: Dockerfile
     ports:
-      - 8000
+      - 8000:8000
     restart: unless-stopped
     container_name: pydjango-service
 
